@@ -34,6 +34,7 @@ a { color: inherit; }
   background-size: cover; background-position: center; clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%); }
 .hero h1 { font: 400 clamp(34px, 9vw, 46px)/1.05 var(--serif); margin: 0 0 14px; letter-spacing: -0.5px; }
 .hero p { margin: 0; max-width: 30em; font-size: 15px; color: rgba(255, 255, 255, 0.92); }
+.hero .closes { margin-top: 10px; font-weight: 600; color: #fff; }
 
 .body { padding: 8px 24px 28px; }
 .match { display: grid; grid-template-columns: 1fr auto auto auto 1fr; align-items: center; gap: 10px; margin: 6px 0 4px; }

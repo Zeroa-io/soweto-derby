@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex">
   <title>Predict the score. And score. | Zeroa</title>
   <meta name="description" content="Predict the full-time score of the Soweto Derby and stand a chance to win 5 tickets to the next Soweto Derby. Free to enter, 18+ only.">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
   <div class="draft-bar" id="draft-bar">Draft for review. Highlighted items still need confirming, and entries are not recorded yet.</div>
@@ -17,6 +17,7 @@
       <header class="hero">
         <h1>Predict the score.<br>And score.</h1>
         <p>Enter your score prediction for the Soweto Derby on Saturday 31 October 2026 to stand a chance to win 5 tickets to the next one for you and your family.</p>
+        <p class="closes">Entries close at kick-off: <span class="js-close"></span>.</p>
       </header>
 
       <form class="body entry" id="entry" novalidate>
@@ -67,7 +68,7 @@
         <h2>You're in.</h2>
         <p>Your prediction:</p>
         <div class="pick" id="pick"></div>
-        <p>Entries close on <span class="js-close"></span>. <span class="tbc">TBC: kick-off time</span> If you win, we will contact you by email and WhatsApp within 3 business days of the draw. <span class="tbc">TBC: contact window</span></p>
+        <p>Entries close at kick-off: <span class="js-close"></span>. If you win, we will contact you by email and WhatsApp within 3 business days of the draw. <span class="tbc">TBC: contact window</span></p>
         <p>Only your first entry counts, so there is no need to enter again.</p>
         <p>You don't need a Zeroa account to enter or to win.</p>
         <a class="join" href="https://www.zeroa.io/" target="_blank" rel="noopener">Join Zeroa</a>
@@ -75,7 +76,7 @@
 
       <section class="closed" id="closed" tabindex="-1">
         <h2>Entries are closed.</h2>
-        <p>Entries closed on <span class="js-close"></span>. <span class="tbc">TBC: kick-off time</span> Thank you to everyone who entered. We will contact the winner by email and WhatsApp.</p>
+        <p>Entries closed at kick-off: <span class="js-close"></span>. Thank you to everyone who entered. We will contact the winner by email and WhatsApp.</p>
       </section>
 
       <p class="disclaimer">Winners will be contacted via email and WhatsApp.</p>
@@ -96,10 +97,10 @@
     // Adam's sign-off, the reg 11(5) independent overseer and the attorney's view on Lotteries Act s56(a).
     var CFG = {
       DRAFT: true,
-      CLOSE_AT: '2026-10-31T15:00:00+02:00',      // TBC: half an hour before the reported 15:30 kick-off; the Zoho form closes itself at the same time
-      CLOSE_TEXT: 'Saturday 31 October 2026 at 15:00 (SA time)',
+      CLOSE_AT: '2026-10-31T15:30:00+02:00',      // kick-off per Pirates, Chiefs and Stadium Management SA (26 Oct); the Zoho form closes itself at the same moment
+      CLOSE_TEXT: '15:30 on Saturday 31 October 2026 (SA time)',
       CAMPAIGN: 'Soweto Derby 31 Oct 2026',
-      VERSION: 'SOWETO-v3 26 Oct 2026',
+      VERSION: 'SOWETO-v4 26 Oct 2026',
       DELETE_AFTER: '31-Mar-2030'   // CRM Delete After: 3 years (rules 10.2 and 11.1) after the 13 Mar 2027 prize match
     };
     // Zoho form ZeroaSowetoDerby2026 (portal helloze1), mapped to CRM Competition_Entries; its htmlRecords/submit
@@ -218,6 +219,10 @@
     var seen = new URLSearchParams(location.search).get('new') === '1' ? null : store(true);
     if (isClosed()) $('card').className = 'card state-closed';
     else if (seen && seen.p !== undefined) showDone(seen.p, seen.c);
+
+    // a page left open switches to closed at kick-off; the submit handler and the Zoho form also refuse late entries
+    var left = new Date(CFG.CLOSE_AT).getTime() - Date.now();
+    if (left > 0 && left < 2147483647) setTimeout(function () { if (!/state-done/.test($('card').className)) show('closed'); }, left);
   </script>
 </body>
 </html>
