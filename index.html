@@ -6,17 +6,17 @@
   <meta name="robots" content="noindex">
   <title>Predict the score. And score. | Zeroa</title>
   <meta name="description" content="Predict the full-time score of the Soweto Derby and stand a chance to win 5 tickets to the next Soweto Derby. Free to enter, 18+ only.">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
-  <div class="draft-bar" id="draft-bar">Draft for review. Highlighted items still need confirming, and entries are not recorded yet.</div>
+  <div class="draft-bar" id="draft-bar">Draft for review. Entries are not recorded yet.</div>
 
   <div class="shell">
     <main class="card" id="card">
 
       <header class="hero">
         <h1>Predict the score.<br>And score.</h1>
-        <p>Enter your score prediction for the Soweto Derby on Saturday 31 October 2026 to stand a chance to win 5 tickets to the next one for you and your family.</p>
+        <p>Enter your score prediction for the Soweto Derby on Saturday&nbsp;31&nbsp;October&nbsp;2026 to stand a chance to win 5&nbsp;tickets to the next one for you and your&nbsp;family.</p>
         <p class="closes">Entries close at kick-off: <span class="js-close"></span>.</p>
       </header>
 
@@ -101,7 +101,7 @@
     var CFG = {
       DRAFT: true,
       CLOSE_AT: '2026-10-31T15:30:00+02:00',      // kick-off per Pirates, Chiefs and Stadium Management SA (26 Oct); the Zoho form closes itself at the same moment
-      CLOSE_TEXT: '15:30 on Saturday 31 October 2026 (SA time)',
+      CLOSE_TEXT: '15:30 on Saturday 31\u00a0October\u00a02026\u00a0(SA\u00a0time)',   // non-breaking spaces keep the date on one line
       CAMPAIGN: 'Soweto Derby 31 Oct 2026',
       VERSION: 'SOWETO-v5 26 Oct 2026',
       RESULT: '',     // after the draw (rule 8.4): the official full-time score as 'Pirates-Chiefs', e.g. '2-1'
@@ -138,7 +138,7 @@
 
     var $ = function (id) { return document.getElementById(id); };
     if (CFG.DRAFT || !LIVE || document.querySelector('.tbc')) document.body.classList.add('draft');
-    if (LIVE) $('draft-bar').textContent = 'Draft for review. Highlighted items still need confirming. Test entries are recorded.';
+    if (LIVE) $('draft-bar').textContent = 'Draft for review. Test entries are recorded.';
     Array.prototype.forEach.call(document.querySelectorAll('.js-close'), function (el) { el.textContent = CFG.CLOSE_TEXT; });
     if (REF) document.querySelector('.join').href = 'https://www.zeroa.io/?ref=' + REF;
     // rule 8.4: once CFG.RESULT is set, the closed view shows the official score and that a winner has been drawn
