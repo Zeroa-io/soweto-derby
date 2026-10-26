@@ -131,7 +131,9 @@
     var KEY = 'zeroa-soweto-2026-10-31' + (LIVE && !CFG.DRAFT ? '' : '-draft');
     var OK_MESSAGE = 'zeroa-soweto-ok';   // ok.html sends this once Zoho has accepted the entry and redirected to it
     // same check the Amone form uses: anything that passes here, Zoho also accepts (tested 30 Sep)
-    var EMAIL = /^[^@\s,]+@([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
+    // Zoho's own rule, probed 26 Oct: before the @ only English letters, digits and . _ + - & ' / (first one a letter,
+    // digit or _), so a refused address gets "Enter a valid email" at once
+    var EMAIL = /^[A-Za-z0-9_][A-Za-z0-9._+&'\/-]*@([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
 
     var $ = function (id) { return document.getElementById(id); };
     if (CFG.DRAFT || !LIVE || document.querySelector('.tbc')) document.body.classList.add('draft');
@@ -155,9 +157,10 @@
     function showDone(p, c) { $('pick').textContent = 'Orlando Pirates ' + p + ' - ' + c + ' Kaizer Chiefs'; show('done'); }
 
     // 082 123 4567, 0821234567, 821234567, +27 82 123 4567, +27 (0)82 123 4567, 0027821234567 and 27821234567 all
-    // become +27821234567; landlines, 0800, 086x and 087 numbers are refused
+    // become +27821234567; landlines, 0800, 086x and 087 numbers are refused. Everything but digits and + is dropped,
+    // including the invisible direction marks a number copied from WhatsApp or contacts can carry
     function mobile(raw) {
-      var d = raw.replace(/[\s\-().]/g, '').replace(/^00/, '+').replace(/^\+?270/, '0');
+      var d = raw.replace(/[^\d+]/g, '').replace(/^00/, '+').replace(/^\+?270/, '0');
       if (/^0(6\d|7\d|8[1-5])\d{7}$/.test(d)) return '+27' + d.slice(1);
       if (/^(6\d|7\d|8[1-5])\d{7}$/.test(d)) return '+27' + d;
       if (/^\+?27(6\d|7\d|8[1-5])\d{7}$/.test(d)) return '+' + d.replace(/^\+/, '');
@@ -178,11 +181,17 @@
     // Posts through the hidden frame and waits for Zoho's thank-you redirect to land on ok.html. A duplicate email or
     // mobile, a closed form or a bad field gets a Zoho error page instead, so no message arrives and the visitor is told.
     function send(fields, done, fail) {
-      var frame = $('zf_hidden'), timer;
-      function finish(ok) { clearTimeout(timer); window.removeEventListener('message', listen); ok ? done() : fail(); }
-      function listen(ev) { if (ev.source === frame.contentWindow && ev.data === OK_MESSAGE) finish(true); }
+      // a fresh frame per attempt: its first load replaces about:blank, so a retry adds no history entry for Back to step through
+      var old = $('zf_hidden'), frame = old.cloneNode(false);
+      old.parentNode.replaceChild(frame, old);
+      // keep listening after the 20 s message: a slow Zoho that accepts late still lands on "You're in"
+      function listen(ev) {
+        if (ev.source === frame.contentWindow && ev.origin === location.origin && ev.data === OK_MESSAGE) {
+          clearTimeout(timer); window.removeEventListener('message', listen); done();
+        }
+      }
       window.addEventListener('message', listen);
-      timer = setTimeout(function () { finish(false); }, 20000);
+      var timer = setTimeout(fail, 20000);
       var f = document.createElement('form');
       f.method = 'POST'; f.action = ZF.action; f.target = 'zf_hidden'; f.style.display = 'none';
       function add(name, value) { var i = document.createElement('input'); i.type = 'hidden'; i.name = name; i.value = value; f.appendChild(i); }
@@ -208,7 +217,7 @@
       var param = function (k) { return (q.get(k) || '').slice(0, 100); };
       var fields = {
         // CRM has no score fields yet, so the record name carries the prediction
-        entry: (first + ' ' + last).slice(0, 90) + ' | Pirates ' + p + '-' + c + ' Chiefs',
+        entry: (first + ' ' + last).slice(0, 90).replace(/[\uD800-\uDBFF]$/, '') + ' | Pirates ' + p + '-' + c + ' Chiefs',
         first: first, last: last, email: email, mobile: mob, pirates: p, chiefs: c,
         adult: 'on', rules: 'on',   // Zoho rejects a tick sent as anything but "on"
         campaign: CFG.CAMPAIGN, version: CFG.VERSION,
@@ -237,8 +246,9 @@
 
     // ?new=1 lets a tester enter again from the same device
     var seen = new URLSearchParams(location.search).get('new') === '1' ? null : store(true);
-    if (isClosed()) $('card').className = 'card state-closed';
-    else if (seen && seen.p !== undefined) showDone(seen.p, seen.c);
+    // someone who entered still sees their pick after kick-off
+    if (seen && seen.p !== undefined) showDone(seen.p, seen.c);
+    else if (isClosed()) $('card').className = 'card state-closed';
 
     // a page left open switches to closed at kick-off; the submit handler and the Zoho form also refuse late entries
     var left = new Date(CFG.CLOSE_AT).getTime() - Date.now();
