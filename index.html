@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Predict the score. And score. | Zeroa</title>
+  <meta name="description" content="Predict the full-time score of the Soweto Derby and stand a chance to win 5 tickets to the next Soweto Derby. Free to enter, 18+ only.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="draft-bar" id="draft-bar">Draft for review. Highlighted items still need confirming, and entries are not recorded yet.</div>
+
+  <div class="shell">
+    <main class="card" id="card">
+
+      <header class="hero">
+        <h1>Predict the score.<br>And score.</h1>
+        <p>Enter your score prediction for the Soweto Derby on Saturday 31 October 2026 to stand a chance to win 5 tickets to the next one for you and your family.</p>
+      </header>
+
+      <form class="body entry" id="entry" novalidate>
+        <div class="match" role="group" aria-label="Your score prediction" aria-describedby="score-hint">
+          <span class="team home">Orlando Pirates</span>
+          <input class="score" id="f_pirates" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" aria-label="Orlando Pirates goals" autocomplete="off">
+          <span class="dash" aria-hidden="true">-</span>
+          <input class="score" id="f_chiefs" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" aria-label="Kaizer Chiefs goals" autocomplete="off">
+          <span class="team">Kaizer Chiefs</span>
+        </div>
+        <p class="hint" id="score-hint">Full-time score, Saturday 31 October 2026</p>
+        <div class="err" id="e_score">Enter a score for both teams (0 to 20).</div>
+
+        <div class="grid">
+          <div class="field">
+            <label class="lbl" for="f_first">First name</label>
+            <input class="txt" id="f_first" type="text" autocomplete="given-name" maxlength="60">
+            <div class="err" id="e_first">Enter your first name.</div>
+          </div>
+          <div class="field">
+            <label class="lbl" for="f_last">Last name</label>
+            <input class="txt" id="f_last" type="text" autocomplete="family-name" maxlength="60">
+            <div class="err" id="e_last">Enter your last name.</div>
+          </div>
+          <div class="field full">
+            <label class="lbl" for="f_email">Email</label>
+            <input class="txt" id="f_email" type="email" autocomplete="email" maxlength="100">
+            <div class="err" id="e_email">Enter a valid email address.</div>
+          </div>
+          <div class="field full">
+            <label class="lbl" for="f_mobile">Mobile number</label>
+            <input class="txt" id="f_mobile" type="tel" autocomplete="tel" maxlength="20" placeholder="082 123 4567">
+            <div class="err" id="e_mobile">Enter a South African mobile number.</div>
+          </div>
+        </div>
+
+        <label class="tick"><input type="checkbox" id="f_adult"><span data-say="adult">I am 18 or older and live in South Africa.</span></label>
+        <div class="err" id="e_adult">You must be 18 or older and live in South Africa to enter.</div>
+        <label class="tick"><input type="checkbox" id="f_rules"><span data-say="rules">I accept the <a href="rules.html" target="_blank" rel="noopener">competition rules</a>.</span></label>
+        <div class="err" id="e_rules">Tick the box to accept the rules.</div>
+        <label class="tick"><input type="checkbox" id="f_optin"><span data-say="optin">Optional: Zeroa may send me news and offers about Zeroa's products and services by email, SMS or WhatsApp. I can opt out at any time.</span></label>
+
+        <button type="submit" class="go" id="go">Enter now</button>
+        <div class="err" id="e_send" role="alert">We couldn't confirm your entry. Check your connection and try again. If you have already entered with this email or mobile number, your first entry stands.</div>
+        <p class="notice">Free to enter, one entry per person. Zeroa uses your details to run this competition and contact the winner, and keeps them as the law requires. Read <a href="rules.html#privacy" target="_blank" rel="noopener">how we use your details</a> and our <a href="https://www.zeroa.io/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</p>
+      </form>
+
+      <section class="done" id="done" tabindex="-1">
+        <h2>You're in.</h2>
+        <p>Your prediction:</p>
+        <div class="pick" id="pick"></div>
+        <p>Entries close on <span class="js-close"></span>. <span class="tbc">TBC: kick-off time</span> If you win, we will contact you by phone and email within 3 business days of the draw. <span class="tbc">TBC: contact window</span></p>
+        <p>Only your first entry counts, so there is no need to enter again.</p>
+        <p>You don't need a Zeroa account to enter or to win.</p>
+        <a class="join" href="https://www.zeroa.io/" target="_blank" rel="noopener">Join Zeroa</a>
+      </section>
+
+      <section class="closed" id="closed" tabindex="-1">
+        <h2>Entries are closed.</h2>
+        <p>Entries closed on <span class="js-close"></span>. <span class="tbc">TBC: kick-off time</span> Thank you to everyone who entered. We will contact the winner by phone and email.</p>
+      </section>
+
+      <section class="terms">
+        <h2>How it works</h2>
+        <dl>
+          <dt>Prize</dt>
+          <dd>5 tickets to the next Soweto Derby, scheduled for Saturday 13 March 2027. <span class="tbc">TBC: competition, seat level, value, travel</span></dd>
+          <dt>Claiming</dt>
+          <dd>The winner shows a South African ID or passport and signs for the tickets. <span class="tbc">TBC: where, when and how the tickets are handed over</span></dd>
+          <dt>How to enter</dt>
+          <dd>Predict the full-time score of Orlando Pirates v Kaizer Chiefs on Saturday 31 October 2026 and fill in your details. Free, one entry per person, 18+ South African residents only.</dd>
+          <dt>Closes</dt>
+          <dd><span class="js-close"></span> <span class="tbc">TBC: kick-off time</span></dd>
+          <dt>Winner</dt>
+          <dd>Drawn at random from entries with the correct full-time score. If nobody has it, the draw is from entries with the correct result, and if nobody has that, from all entries. <span class="tbc">TBC: Adam and the attorney</span></dd>
+          <dt>Results</dt>
+          <dd>We contact the winner by phone and email. <span class="tbc">TBC: where the result is published</span></dd>
+          <dt>Full rules</dt>
+          <dd><a href="rules.html" target="_blank" rel="noopener">Read the competition rules</a></dd>
+        </dl>
+      </section>
+
+      <div class="brand"><img src="zeroa-wordmark.png" alt="Zeroa" width="470" height="90"></div>
+    </main>
+
+    <footer class="foot">
+      <p>Chembridge Capital (PTY) Ltd t/a Zeroa, registration number 2014/064942/07, is an authorised Financial Services Provider, FSP No 36012. Investing in crypto assets may result in a loss of capital</p>
+      <p>This competition is run by Zeroa and is not affiliated with or endorsed by the PSL, Orlando Pirates, Kaizer Chiefs or SAFA.</p>
+    </footer>
+  </div>
+
+  <iframe name="zf_hidden" id="zf_hidden" title="" style="display:none"></iframe>
+
+  <script>
+    // Go-live: replace every TBC here and in rules.html with confirmed wording, then switch DRAFT off. That needs
+    // Adam's sign-off, the reg 11(5) independent overseer and the attorney's view on Lotteries Act s56(a).
+    var CFG = {
+      DRAFT: true,
+      CLOSE_AT: '2026-10-31T15:00:00+02:00',      // TBC: half an hour before the reported 15:30 kick-off; the Zoho form closes itself at the same time
+      CLOSE_TEXT: 'Saturday 31 October 2026 at 15:00 (SA time)',
+      CAMPAIGN: 'Soweto Derby 31 Oct 2026',
+      VERSION: 'SOWETO-v2 26 Oct 2026',
+      DELETE_AFTER: '31-Mar-2030'   // CRM Delete After: 3 years (rules 10.2 and 11.1) after the 13 Mar 2027 prize match
+    };
+    // Zoho form ZeroaSowetoDerby2026 (portal helloze1), mapped to CRM Competition_Entries; its htmlRecords/submit
+    // address, the HTML perma and the field link names from Share > Embed > HTML & CSS
+    var ZF = {
+      action: 'https://forms.zohopublic.com/helloze1/form/ZeroaSowetoDerby2026/formperma/LdjLZlXxpgjAuLz-WsGTv6Q0yoEVy_QcrQnHkFCcOzg/htmlRecords/submit',
+      perma: 'LdjLZlXxpgjAuLz-WsGTv6Q0yoEVy_QcrQnHkFCcOzg',
+      names: {
+        entry: 'SingleLine', first: 'SingleLine1', last: 'SingleLine2', email: 'Email', mobile: 'PhoneNumber_countrycode',
+        pirates: 'Number', chiefs: 'Number1', adult: 'DecisionBox1', rules: 'DecisionBox2', optin: 'DecisionBox',
+        campaign: 'SingleLine3', version: 'SingleLine7', channel: 'Dropdown',
+        utm_source: 'SingleLine4', utm_medium: 'SingleLine5', utm_campaign: 'SingleLine6',
+        delete_after: 'Date', wording: 'MultiLine'
+      }
+    };
+    var LIVE = /^https:\/\/forms\.zohopublic\.com\//.test(ZF.action) && ZF.perma !== '';
+    var KEY = 'zeroa-soweto-2026-10-31' + (LIVE && !CFG.DRAFT ? '' : '-draft');
+    var OK_MESSAGE = 'zeroa-soweto-ok';   // ok.html sends this once Zoho has accepted the entry and redirected to it
+    // same check the Amone form uses: anything that passes here, Zoho also accepts (tested 30 Sep)
+    var EMAIL = /^[^@\s,]+@([A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
+
+    var $ = function (id) { return document.getElementById(id); };
+    if (CFG.DRAFT || !LIVE || document.querySelector('.tbc')) document.body.classList.add('draft');
+    if (LIVE) $('draft-bar').textContent = 'Draft for review. Highlighted items still need confirming. Test entries are recorded.';
+    Array.prototype.forEach.call(document.querySelectorAll('.js-close'), function (el) { el.textContent = CFG.CLOSE_TEXT; });
+
+    function store(get, value) {
+      try { if (get) return JSON.parse(localStorage.getItem(KEY)); localStorage.setItem(KEY, JSON.stringify(value)); } catch (e) {}
+      return null;
+    }
+    function isClosed() { return Date.now() >= new Date(CFG.CLOSE_AT).getTime(); }
+    function show(state) { $('card').className = 'card' + (state ? ' state-' + state : ''); if (state) $(state).focus(); }
+    function showDone(p, c) { $('pick').textContent = 'Orlando Pirates ' + p + ' - ' + c + ' Kaizer Chiefs'; show('done'); }
+
+    // 082 123 4567, 0821234567, 821234567, +27 82 123 4567, +27 (0)82 123 4567, 0027821234567 and 27821234567 all
+    // become +27821234567; landlines, 0800, 086x and 087 numbers are refused
+    function mobile(raw) {
+      var d = raw.replace(/[\s\-().]/g, '').replace(/^00/, '+').replace(/^\+?270/, '0');
+      if (/^0(6\d|7\d|8[1-5])\d{7}$/.test(d)) return '+27' + d.slice(1);
+      if (/^(6\d|7\d|8[1-5])\d{7}$/.test(d)) return '+27' + d;
+      if (/^\+?27(6\d|7\d|8[1-5])\d{7}$/.test(d)) return '+' + d.replace(/^\+/, '');
+      return '';
+    }
+    function goals(el) { var v = el.value.trim(); return /^\d{1,2}$/.test(v) && +v <= 20 ? String(+v) : ''; }
+    function mark(id, ok, els) {
+      $('e_' + id).classList.toggle('show', !ok);
+      (els || [$('f_' + id)]).forEach(function (el) {
+        if (el.type !== 'checkbox') el.classList.toggle('bad', !ok);
+        el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+        if (ok) el.removeAttribute('aria-describedby'); else el.setAttribute('aria-describedby', 'e_' + id);
+      });
+      return ok;
+    }
+    function say(name) { return document.querySelector('[data-say="' + name + '"]').textContent.replace(/\s+/g, ' ').trim(); }
+
+    // Posts through the hidden frame and waits for Zoho's thank-you redirect to land on ok.html. A duplicate email or
+    // mobile, a closed form or a bad field gets a Zoho error page instead, so no message arrives and the visitor is told.
+    function send(fields, done, fail) {
+      var frame = $('zf_hidden'), timer;
+      function finish(ok) { clearTimeout(timer); window.removeEventListener('message', listen); ok ? done() : fail(); }
+      function listen(ev) { if (ev.source === frame.contentWindow && ev.data === OK_MESSAGE) finish(true); }
+      window.addEventListener('message', listen);
+      timer = setTimeout(function () { finish(false); }, 20000);
+      var f = document.createElement('form');
+      f.method = 'POST'; f.action = ZF.action; f.target = 'zf_hidden'; f.style.display = 'none';
+      function add(name, value) { var i = document.createElement('input'); i.type = 'hidden'; i.name = name; i.value = value; f.appendChild(i); }
+      add('formperma', ZF.perma);
+      add('zf_redirect_url', new URL('ok.html', location.href).href);
+      Object.keys(fields).forEach(function (k) { if (fields[k] !== null) add(ZF.names[k], fields[k]); });
+      document.body.appendChild(f); f.submit(); f.remove();
+    }
+
+    $('entry').addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      if (isClosed()) { show('closed'); return; }
+      $('e_send').classList.remove('show');
+      var p = goals($('f_pirates')), c = goals($('f_chiefs'));
+      var first = $('f_first').value.trim(), last = $('f_last').value.trim();
+      var email = $('f_email').value.trim(), mob = mobile($('f_mobile').value);
+      var ok = mark('score', p !== '' && c !== '', [$('f_pirates'), $('f_chiefs')])
+        & mark('first', !!first) & mark('last', !!last) & mark('email', EMAIL.test(email)) & mark('mobile', !!mob)
+        & mark('adult', $('f_adult').checked) & mark('rules', $('f_rules').checked);
+      if (!ok) { document.querySelector('[aria-invalid="true"]').focus(); return; }
+
+      var q = new URLSearchParams(location.search);
+      var param = function (k) { return (q.get(k) || '').slice(0, 100); };
+      var optin = $('f_optin').checked;
+      var fields = {
+        // CRM has no score fields yet, so the record name carries the prediction
+        entry: (first + ' ' + last).slice(0, 90) + ' | Pirates ' + p + '-' + c + ' Chiefs',
+        first: first, last: last, email: email, mobile: mob, pirates: p, chiefs: c,
+        adult: 'on', rules: 'on', optin: optin ? 'on' : null,   // Zoho rejects a tick sent as anything but "on"
+        campaign: CFG.CAMPAIGN, version: CFG.VERSION,
+        channel: param('utm_medium').toLowerCase() === 'qr' ? 'QR' : 'Link',
+        utm_source: param('utm_source'), utm_medium: param('utm_medium'), utm_campaign: param('utm_campaign'),
+        delete_after: CFG.DELETE_AFTER,
+        // the exact wording each person agreed to, kept with their entry
+        wording: [CFG.VERSION, 'Ticked: ' + say('adult'), 'Ticked: ' + say('rules'), (optin ? 'Ticked: ' : 'Not ticked: ') + say('optin')].join('\n')
+      };
+      function done() { store(false, { p: p, c: c, at: new Date().toISOString() }); showDone(p, c); }
+      if (!LIVE) { done(); return; }
+      var go = $('go');
+      go.disabled = true; go.textContent = 'Sending...';
+      send(fields, done, function () {
+        go.disabled = false; go.textContent = 'Enter now';
+        $('e_send').classList.add('show');
+        go.focus();
+      });
+    });
+
+    // keep the score boxes to digits
+    ['f_pirates', 'f_chiefs'].forEach(function (id) {
+      $(id).addEventListener('input', function () { this.value = this.value.replace(/\D/g, '').slice(0, 2); });
+    });
+
+    // ?new=1 lets a tester enter again from the same device
+    var seen = new URLSearchParams(location.search).get('new') === '1' ? null : store(true);
+    if (isClosed()) $('card').className = 'card state-closed';
+    else if (seen && seen.p !== undefined) showDone(seen.p, seen.c);
+  </script>
+</body>
+</html>
