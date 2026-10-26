@@ -22,9 +22,9 @@
       <form class="body entry" id="entry" novalidate>
         <div class="match" role="group" aria-label="Your score prediction" aria-describedby="score-hint">
           <span class="team home">Orlando Pirates</span>
-          <input class="score" id="f_pirates" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" aria-label="Orlando Pirates goals" autocomplete="off">
+          <input class="score" id="f_pirates" required type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" aria-label="Orlando Pirates goals" autocomplete="off">
           <span class="dash" aria-hidden="true">-</span>
-          <input class="score" id="f_chiefs" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" aria-label="Kaizer Chiefs goals" autocomplete="off">
+          <input class="score" id="f_chiefs" required type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" aria-label="Kaizer Chiefs goals" autocomplete="off">
           <span class="team">Kaizer Chiefs</span>
         </div>
         <p class="hint" id="score-hint">Full-time score, Saturday 31 October 2026</p>
@@ -33,31 +33,30 @@
         <div class="grid">
           <div class="field">
             <label class="lbl" for="f_first">First name</label>
-            <input class="txt" id="f_first" type="text" autocomplete="given-name" maxlength="60">
+            <input class="txt" id="f_first" required type="text" autocomplete="given-name" maxlength="60">
             <div class="err" id="e_first">Enter your first name.</div>
           </div>
           <div class="field">
             <label class="lbl" for="f_last">Last name</label>
-            <input class="txt" id="f_last" type="text" autocomplete="family-name" maxlength="60">
+            <input class="txt" id="f_last" required type="text" autocomplete="family-name" maxlength="60">
             <div class="err" id="e_last">Enter your last name.</div>
           </div>
           <div class="field full">
             <label class="lbl" for="f_email">Email</label>
-            <input class="txt" id="f_email" type="email" autocomplete="email" maxlength="100">
+            <input class="txt" id="f_email" required type="email" autocomplete="email" maxlength="100">
             <div class="err" id="e_email">Enter a valid email address.</div>
           </div>
           <div class="field full">
             <label class="lbl" for="f_mobile">Mobile number</label>
-            <input class="txt" id="f_mobile" type="tel" autocomplete="tel" maxlength="20" placeholder="082 123 4567">
+            <input class="txt" id="f_mobile" required type="tel" autocomplete="tel" maxlength="20" placeholder="082 123 4567">
             <div class="err" id="e_mobile">Enter a South African mobile number.</div>
           </div>
         </div>
 
-        <label class="tick"><input type="checkbox" id="f_adult"><span data-say="adult">I am 18 or older and live in South Africa.</span></label>
+        <label class="tick"><input type="checkbox" id="f_adult" required><span data-say="adult">I am 18 or older and live in South Africa.</span></label>
         <div class="err" id="e_adult">You must be 18 or older and live in South Africa to enter.</div>
-        <label class="tick"><input type="checkbox" id="f_rules"><span data-say="rules">I accept the <a href="rules.html" target="_blank" rel="noopener">competition rules</a>.</span></label>
+        <label class="tick"><input type="checkbox" id="f_rules" required><span data-say="rules">I accept the <a href="rules.html" target="_blank" rel="noopener">competition rules</a>.</span></label>
         <div class="err" id="e_rules">Tick the box to accept the rules.</div>
-        <label class="tick"><input type="checkbox" id="f_optin"><span data-say="optin">Optional: Zeroa may send me news and offers about Zeroa's products and services by email, SMS or WhatsApp. I can opt out at any time.</span></label>
 
         <button type="submit" class="go" id="go">Enter now</button>
         <div class="err" id="e_send" role="alert">We couldn't confirm your entry. Check your connection and try again. If you have already entered with this email or mobile number, your first entry stands.</div>
@@ -68,7 +67,7 @@
         <h2>You're in.</h2>
         <p>Your prediction:</p>
         <div class="pick" id="pick"></div>
-        <p>Entries close on <span class="js-close"></span>. <span class="tbc">TBC: kick-off time</span> If you win, we will contact you by phone and email within 3 business days of the draw. <span class="tbc">TBC: contact window</span></p>
+        <p>Entries close on <span class="js-close"></span>. <span class="tbc">TBC: kick-off time</span> If you win, we will contact you by email and WhatsApp within 3 business days of the draw. <span class="tbc">TBC: contact window</span></p>
         <p>Only your first entry counts, so there is no need to enter again.</p>
         <p>You don't need a Zeroa account to enter or to win.</p>
         <a class="join" href="https://www.zeroa.io/" target="_blank" rel="noopener">Join Zeroa</a>
@@ -76,28 +75,10 @@
 
       <section class="closed" id="closed" tabindex="-1">
         <h2>Entries are closed.</h2>
-        <p>Entries closed on <span class="js-close"></span>. <span class="tbc">TBC: kick-off time</span> Thank you to everyone who entered. We will contact the winner by phone and email.</p>
+        <p>Entries closed on <span class="js-close"></span>. <span class="tbc">TBC: kick-off time</span> Thank you to everyone who entered. We will contact the winner by email and WhatsApp.</p>
       </section>
 
-      <section class="terms">
-        <h2>How it works</h2>
-        <dl>
-          <dt>Prize</dt>
-          <dd>5 tickets to the next Soweto Derby, scheduled for Saturday 13 March 2027. <span class="tbc">TBC: competition, seat level, value, travel</span></dd>
-          <dt>Claiming</dt>
-          <dd>The winner shows a South African ID or passport and signs for the tickets. <span class="tbc">TBC: where, when and how the tickets are handed over</span></dd>
-          <dt>How to enter</dt>
-          <dd>Predict the full-time score of Orlando Pirates v Kaizer Chiefs on Saturday 31 October 2026 and fill in your details. Free, one entry per person, 18+ South African residents only.</dd>
-          <dt>Closes</dt>
-          <dd><span class="js-close"></span> <span class="tbc">TBC: kick-off time</span></dd>
-          <dt>Winner</dt>
-          <dd>Drawn at random from entries with the correct full-time score. If nobody has it, the draw is from entries with the correct result, and if nobody has that, from all entries. <span class="tbc">TBC: Adam and the attorney</span></dd>
-          <dt>Results</dt>
-          <dd>We contact the winner by phone and email. <span class="tbc">TBC: where the result is published</span></dd>
-          <dt>Full rules</dt>
-          <dd><a href="rules.html" target="_blank" rel="noopener">Read the competition rules</a></dd>
-        </dl>
-      </section>
+      <p class="disclaimer">Winners will be contacted via email and WhatsApp.</p>
 
       <div class="brand"><img src="zeroa-wordmark.png" alt="Zeroa" width="470" height="90"></div>
     </main>
@@ -118,7 +99,7 @@
       CLOSE_AT: '2026-10-31T15:00:00+02:00',      // TBC: half an hour before the reported 15:30 kick-off; the Zoho form closes itself at the same time
       CLOSE_TEXT: 'Saturday 31 October 2026 at 15:00 (SA time)',
       CAMPAIGN: 'Soweto Derby 31 Oct 2026',
-      VERSION: 'SOWETO-v2 26 Oct 2026',
+      VERSION: 'SOWETO-v3 26 Oct 2026',
       DELETE_AFTER: '31-Mar-2030'   // CRM Delete After: 3 years (rules 10.2 and 11.1) after the 13 Mar 2027 prize match
     };
     // Zoho form ZeroaSowetoDerby2026 (portal helloze1), mapped to CRM Competition_Entries; its htmlRecords/submit
@@ -128,7 +109,7 @@
       perma: 'LdjLZlXxpgjAuLz-WsGTv6Q0yoEVy_QcrQnHkFCcOzg',
       names: {
         entry: 'SingleLine', first: 'SingleLine1', last: 'SingleLine2', email: 'Email', mobile: 'PhoneNumber_countrycode',
-        pirates: 'Number', chiefs: 'Number1', adult: 'DecisionBox1', rules: 'DecisionBox2', optin: 'DecisionBox',
+        pirates: 'Number', chiefs: 'Number1', adult: 'DecisionBox1', rules: 'DecisionBox2',
         campaign: 'SingleLine3', version: 'SingleLine7', channel: 'Dropdown',
         utm_source: 'SingleLine4', utm_medium: 'SingleLine5', utm_campaign: 'SingleLine6',
         delete_after: 'Date', wording: 'MultiLine'
@@ -205,18 +186,17 @@
 
       var q = new URLSearchParams(location.search);
       var param = function (k) { return (q.get(k) || '').slice(0, 100); };
-      var optin = $('f_optin').checked;
       var fields = {
         // CRM has no score fields yet, so the record name carries the prediction
         entry: (first + ' ' + last).slice(0, 90) + ' | Pirates ' + p + '-' + c + ' Chiefs',
         first: first, last: last, email: email, mobile: mob, pirates: p, chiefs: c,
-        adult: 'on', rules: 'on', optin: optin ? 'on' : null,   // Zoho rejects a tick sent as anything but "on"
+        adult: 'on', rules: 'on',   // Zoho rejects a tick sent as anything but "on"
         campaign: CFG.CAMPAIGN, version: CFG.VERSION,
         channel: param('utm_medium').toLowerCase() === 'qr' ? 'QR' : 'Link',
         utm_source: param('utm_source'), utm_medium: param('utm_medium'), utm_campaign: param('utm_campaign'),
         delete_after: CFG.DELETE_AFTER,
         // the exact wording each person agreed to, kept with their entry
-        wording: [CFG.VERSION, 'Ticked: ' + say('adult'), 'Ticked: ' + say('rules'), (optin ? 'Ticked: ' : 'Not ticked: ') + say('optin')].join('\n')
+        wording: [CFG.VERSION, 'Ticked: ' + say('adult'), 'Ticked: ' + say('rules')].join('\n')
       };
       function done() { store(false, { p: p, c: c, at: new Date().toISOString() }); showDone(p, c); }
       if (!LIVE) { done(); return; }
