@@ -113,9 +113,18 @@
         pirates: 'Number', chiefs: 'Number1', adult: 'DecisionBox1', rules: 'DecisionBox2',
         campaign: 'SingleLine3', version: 'SingleLine7', channel: 'Dropdown',
         utm_source: 'SingleLine4', utm_medium: 'SingleLine5', utm_campaign: 'SingleLine6',
-        delete_after: 'Date', wording: 'MultiLine'
+        delete_after: 'Date', wording: 'MultiLine', referral: 'SingleLine8'
       }
     };
+    // ?ref=<8-character Zeroa referral code> credits a partner: it goes to CRM Referral_Code with the entry and onto
+    // the Join Zeroa link, so a Zeroa sign-up from here is credited too. Kept on the device, so a visitor who scanned
+    // a partner QR and comes back later through a plain link still credits that partner.
+    var REF = (function () {
+      var ok = function (v) { v = (v || '').trim().toUpperCase(); return /^[A-Z0-9]{8}$/.test(v) ? v : ''; };
+      var got = ok(new URLSearchParams(location.search).get('ref'));
+      try { if (got) localStorage.setItem('zeroa-soweto-ref', got); else got = ok(localStorage.getItem('zeroa-soweto-ref')); } catch (e) {}
+      return got;
+    })();
     var LIVE = /^https:\/\/forms\.zohopublic\.com\//.test(ZF.action) && ZF.perma !== '';
     var KEY = 'zeroa-soweto-2026-10-31' + (LIVE && !CFG.DRAFT ? '' : '-draft');
     var OK_MESSAGE = 'zeroa-soweto-ok';   // ok.html sends this once Zoho has accepted the entry and redirected to it
@@ -126,6 +135,7 @@
     if (CFG.DRAFT || !LIVE || document.querySelector('.tbc')) document.body.classList.add('draft');
     if (LIVE) $('draft-bar').textContent = 'Draft for review. Highlighted items still need confirming. Test entries are recorded.';
     Array.prototype.forEach.call(document.querySelectorAll('.js-close'), function (el) { el.textContent = CFG.CLOSE_TEXT; });
+    if (REF) document.querySelector('.join').href = 'https://www.zeroa.io/?ref=' + REF;
 
     function store(get, value) {
       try { if (get) return JSON.parse(localStorage.getItem(KEY)); localStorage.setItem(KEY, JSON.stringify(value)); } catch (e) {}
@@ -196,6 +206,7 @@
         channel: param('utm_medium').toLowerCase() === 'qr' ? 'QR' : 'Link',
         utm_source: param('utm_source'), utm_medium: param('utm_medium'), utm_campaign: param('utm_campaign'),
         delete_after: CFG.DELETE_AFTER,
+        referral: REF || null,
         // the exact wording each person agreed to, kept with their entry
         wording: [CFG.VERSION, 'Ticked: ' + say('adult'), 'Ticked: ' + say('rules')].join('\n')
       };
